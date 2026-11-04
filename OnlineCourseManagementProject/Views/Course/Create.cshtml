@@ -1,0 +1,45 @@
+﻿@model CourseDetails
+
+<form asp-controller="Course" asp-action="Create" method="post">
+    <div>
+        <div>
+            <label>CourseName</label>
+            <input asp-for="CourseName" type="text" required/>
+        </div>
+        <div>
+            <label>Duration</label>
+            <input asp-for="Duration" type="text" required />
+        </div>
+        <div>
+            <label>Fee</label>
+            <input asp-for="Fee" type="text" required />
+        </div>
+        <div>
+            <label>Trainer</label>
+            <input asp-for="Trainer" type="text" required />
+        </div>
+        <div>
+            <label>Description</label>
+            <input asp-for="Description" type="text"  />
+        </div>
+        <div>
+            <label>IsAvailable</label>
+            <input asp-for="IsAvailable" type="checkbox"  />
+        </div>
+        <div>
+            <input class="btn-success" type="Submit"  />
+        </div>
+
+    </div>
+</form>
+
+@if (ViewData["Msg"] != null)
+{
+    <h3>@ViewData["Msg"]</h3>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = '@Url.Action("Read", "Course")';
+        }, 3000);
+    </script>
+}

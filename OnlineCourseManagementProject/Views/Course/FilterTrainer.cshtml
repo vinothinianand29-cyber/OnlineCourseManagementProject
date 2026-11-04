@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CourseDetails>
+
+<h2>Filter Trainer</h2>
+
+<table border="1">
+    <tr>
+        <th>CourseId</th>
+        <th>CourseName</th>
+        <th>Duration</th>
+        <th>Fee</th>
+        <th>Trainer</th>
+        <th>Description</th>
+        <th>IsAvailable</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CourseId</td>
+            <td>@item.CourseName</td>
+            <td>@item.Duration</td>
+            <td>@item.Fee</td>
+            <td>@item.Trainer</td>
+            <td>@item.Description</td>
+            <td>@item.IsAvailable</td>
+        </tr>
+    }
+</table>
+
+<h3>
+    <a asp-controller="Course" asp-action="Read">
+        Back to All Courses
+    </a>
+</h3>

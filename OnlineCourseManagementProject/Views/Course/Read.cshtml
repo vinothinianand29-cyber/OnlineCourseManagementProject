@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CourseDetails>
+
+<div>
+    <form asp-controller="Course" asp-action="SearchCourses" method="get">
+        <label>SearchCourses</label>
+        <input type="text" name="search" placeholder="Enter course name" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+<br />
+
+<div>
+    <form asp-controller="Course" asp-action="FilterTrainer" method="get">
+        <label>Filter Trainer</label>
+        <input type="text" name="trainer" placeholder="Enter trainer name" />
+        <input type="submit" value="Filter" />
+    </form>
+</div>
+
+
+<div>
+    <a asp-controller="Course" asp-action="ActiveCourses">
+        Active Courses
+    </a>
+</div>
+
+<br />
+
+
+<!-- Delete All -->
+<h3><a asp-controller="Course" asp-action="DeleteAll" onclick="return confirm('Are you sure you want to delete all courses?');">Delete All</a></h3>
+
+<br />
+<br />
+
+<table class="table table-bordered table-striped" border="1">
+<tr>
+        <th>CourseId</th>
+        <th>CourseName</th>
+        <th>Duration</th>
+        <th>Fee</th>
+        <th>Trainer</th>
+        <th>Description</th>
+        <th>IsAvailable</th>
+        <th>Edit</th>
+        <th>Delete</th>
+</tr>
+
+@foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.CourseId</td>
+            <td>@item.CourseName</td>
+            <td>@item.Duration</td>
+            <td>@item.Fee</td>
+            <td>@item.Trainer</td>
+            <td>@item.Description</td>
+            <td>@item.IsAvailable</td>
+            <td><a asp-controller="Course" asp-action="Edit" asp-route-CourseId="@item.CourseId">Update</a></td>
+            <td><a asp-controller="Course" asp-action="Delete" asp-route-CourseId="@item.CourseId" onclick="return confirm('Are you sure you want to delete?');">Delete</a></td>
+        </tr>
+    }
+ </table>
+
+
+<br />
+
+<!-- Pagination -->
+<div>
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a asp-controller="Course"
+           asp-action="Read"
+           asp-route-page="@(ViewBag.CurrentPage - 1)">
+            Previous
+        </a>
+    }
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <a asp-controller="Course"
+           asp-action="Read"
+           asp-route-page="@i">
+            @i
+        </a>
+    }
+
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a asp-controller="Course"
+           asp-action="Read"
+           asp-route-page="@(ViewBag.CurrentPage + 1)">
+            Next
+        </a>
+    }
+</div>
+
+<br />
+
+ <h3><a asp-controller="Course" asp-action="Create">Go Back</a></h3>
