@@ -85,6 +85,7 @@ namespace OnlineCourseManagementProject.Controllers
         {
            var data = _ctx.CourseDatas.Where(x=>x.IsAvailable == true).ToList();
             return View(data);
+            Console.WriteLine("bfghjk");
         }
 
         public IActionResult DeleteAll()
